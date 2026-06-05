@@ -153,10 +153,10 @@ def check_checklist(body: str) -> None:
     if not content or is_placeholder(content):
         ERRORS.append("Section '## Checklist' is empty.")
         return
-    unchecked = re.findall(r"^\s*- \[ \] ", content, re.MULTILINE)
+    unchecked = re.findall(r"^\s*- \[ \] ", content, re.MULTILINE | re.IGNORECASE)
     if unchecked:
         ERRORS.append(
-            f"Section '## Checklist' has {len(unchecked)} unchecked item(s) — mark each with [x] or remove."
+            f"Section '## Checklist' has {len(unchecked)} unchecked item(s) - mark each with [x] or remove."
         )
 
 
