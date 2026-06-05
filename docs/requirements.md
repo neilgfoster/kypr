@@ -10,8 +10,9 @@ Kypr (from "Keeper") is a personal assistant framework delivered as an agent ski
 It gives any AI agent tool a persistent, context-aware personal assistant with
 isolated workspaces for personal and professional life.
 
-- Delivered as a hedl-compatible skill (installable into any target repo via hedl's
-  install mechanism).
+- Structured as a hedl-compatible skill. Hedl is a reference example for how a skill
+  can be delivered across multiple agent tools — Kypr follows that pattern, not a
+  hedl-provided install mechanism.
 - Operates entirely within agent sessions — no background processes, no servers, no
   daemons.
 - Maintains persistent state across sessions through files committed in the target
@@ -34,8 +35,9 @@ workspace state and an unencrypted commit. Any design that weakens it is rejecte
 
 Kypr follows hedl's distribution model.
 
-- The skill is packaged and installed using hedl's install mechanism
-  (`install.py`, `tiers.json`, `adapters.json`, `plugin.json`).
+- The skill follows hedl's structural conventions (`install.py`, `tiers.json`,
+  `adapters.json`, `plugin.json`) as a delivery pattern, not as a framework
+  provided by hedl itself.
 - The full hedl model must be studied before any distribution design decisions are
   made (see WORK-0002 in the backlog).
 - Kypr must replicate hedl's projection model (how files land in target repos)
