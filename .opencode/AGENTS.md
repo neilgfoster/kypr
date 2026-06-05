@@ -1,0 +1,1 @@
+../../hedl/skill/hedl/integrations/opencode/opencode-agents.md

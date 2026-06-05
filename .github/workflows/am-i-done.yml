@@ -1,0 +1,51 @@
+name: am-i-done
+
+on:
+  pull_request:
+    types: [opened, edited, reopened, synchronize]
+
+# Cancel in-flight runs on rapid pushes (OP14, CA6).
+concurrency:
+  group: am-i-done-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+# Minimum permissions. pull-requests: read required for template and
+# thread checks via gh CLI. security-events: read required for the
+# Dependabot alerts endpoint.
+permissions:
+  contents: read
+  pull-requests: read
+  security-events: read
+
+jobs:
+  am-i-done:
+    name: am_i_done (${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13", "3.14"]
+    env:
+      GH_TOKEN: ${{ github.token }}
+      # Assign to env var — avoids ${{ }} expression injection in run: steps.
+      PR_NUMBER: ${{ github.event.pull_request.number }}
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
+
+      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405  # v6.2.0
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      # Gate-tier adopters get requirements-ci.txt but NOT pyproject.toml/uv.lock,
+      # so this installs the gate's dev toolchain from the one projected manifest
+      # (WORK-0068). Hedl's own .github/workflows/am-i-done.yml is a separate copy
+      # that keeps `uv sync --frozen` because the framework repo ships the lockfile.
+      - name: Install dev dependencies
+        # --require-hashes enforces the sha256 pins uv export wrote into the file
+        # (every package is hashed), so the gate-tier adopter install is verified,
+        # not just version-pinned.
+        run: pip install --require-hashes -r requirements-ci.txt
+
+      - name: Run am_i_done
+        run: python .github/scripts/am_i_done.py --pr "$PR_NUMBER"

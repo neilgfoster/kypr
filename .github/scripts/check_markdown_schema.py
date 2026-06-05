@@ -1,0 +1,1 @@
+../../../hedl/skill/hedl/scripts/check_markdown_schema.py

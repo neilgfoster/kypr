@@ -1,0 +1,1 @@
+../hedl/skill/hedl/integrations/codex/AGENTS.md

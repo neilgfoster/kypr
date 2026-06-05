@@ -1,0 +1,1 @@
+../../../hedl/skill/hedl/commands/adversarial-review.md

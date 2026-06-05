@@ -1,0 +1,1 @@
+../../hedl/skill/hedl/integrations/claude-code/startup.sh
