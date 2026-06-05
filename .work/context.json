@@ -1,11 +1,11 @@
 {
   "schema_version": "2",
   "meta": {
-    "project": "EDIT ME: your-project-name",
+    "project": "kypr",
     "work_item_prefix": "WORK",
     "phase": 0,
-    "last_updated": "EDIT ME: YYYY-MM-DD",
-    "description": "EDIT ME: one-line project description"
+    "last_updated": "2026-06-05",
+    "description": "Personal assistant framework delivered as an agent skill"
   },
   "project_version": "0.0.0",
   "releases": {},
@@ -25,6 +25,5 @@
     ".claude/agents/": "8 core adversarial review agents"
   },
   "decisions": [],
-  "_edit_me": "Set meta.project to your project name, meta.last_updated to today.",
-  "notes": "Clean v0 starting state. Edit phase-0.json and work.json with your project's real content, then run /start-session."
+  "notes": "Clean v0 starting state. Kypr skill skeleton is the Phase 0 goal."
 }

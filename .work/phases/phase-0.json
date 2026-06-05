@@ -1,20 +1,22 @@
 {
-  "_edit_me": "Replace every placeholder below with your project's real content before running /iterate.",
   "phase": 0,
-  "name": "Project Phase 0",
-  "goal": "EDIT ME: One sentence describing what this phase achieves and why it matters.",
+  "name": "Seed",
+  "goal": "Build and distribute the Kypr skill skeleton with mandatory encryption, isolated workspaces, and agent-agnostic harness wiring.",
   "status": "active",
-  "started": "EDIT ME: YYYY-MM-DD",
+  "started": "2026-06-05",
   "completed": null,
   "definition_of_done": [
-    "EDIT ME: Replace these with your real acceptance criteria.",
-    "Each criterion should be binary — either true or false, never 'mostly done'.",
-    "am_i_done.py passes on this branch"
+    "skill/kypr/ exists with all required files (SKILL.md, plugin.json, adapters.json, tiers.json, agents/, commands/, scripts/, integrations/, workspace-state/, references/)",
+    "skill/kypr/scripts/verify_encryption.py exits 1 without git-crypt and 0 with it correctly configured",
+    "skill/kypr/scripts/install.py --tier standard installs the skill into a target repo without error",
+    "skill/kypr/scripts/kypr.py --status prints active workspace",
+    "CLAUDE.md and README.md are present and accurate",
+    "am_i_done.py passes"
   ],
   "constraints": [
     "am_i_done.py must remain deterministic — no inference in the gate",
-    "Existing pytest suite must pass throughout",
-    "EDIT ME: Add any phase-specific constraints here"
+    "Encryption check in verify_encryption.py must not be weakened or made optional",
+    "Kypr skill must follow hedl's distribution model exactly"
   ],
   "workstreams": [
     {
@@ -29,10 +31,11 @@
     }
   ],
   "learning_goals": [
-    "EDIT ME: What assumptions will this phase validate or invalidate?"
+    "Validate that hedl's symlink distribution model works cleanly for a second skill",
+    "Validate that agent-agnostic skill design is achievable with thin per-harness adapters"
   ],
   "assumptions_to_validate": [
-    "EDIT ME: State the biggest assumption you are making entering this phase."
+    "git-crypt is sufficient for personal data encryption without additional tooling"
   ],
   "next_phase_trigger": "All DoD items verified. Run /phase-complete."
 }
