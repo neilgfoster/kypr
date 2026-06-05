@@ -23,7 +23,10 @@ isolated workspaces for personal and professional life.
 **git-crypt is mandatory.** There are no exceptions and no bypass paths.
 
 - Kypr must verify that git-crypt is correctly configured at every session start.
-- If encryption is not correctly configured, Kypr must refuse to proceed.
+  "Correctly configured" means: (1) the `git-crypt` binary is present in PATH,
+  (2) `.gitattributes` contains at least one `filter=git-crypt` rule, and
+  (3) `git-crypt status` exits 0 (keys are unlocked for this clone).
+- If any of these checks fail, Kypr must refuse to proceed.
 - Personal data must never be persisted unencrypted.
 - The encryption check is not optional and cannot be weakened, made conditional, or
   bypassed by any configuration, flag, or operator instruction.
@@ -35,9 +38,11 @@ workspace state and an unencrypted commit. Any design that weakens it is rejecte
 
 Kypr follows hedl's distribution model.
 
-- The skill follows hedl's structural conventions (`install.py`, `tiers.json`,
-  `adapters.json`, `plugin.json`) as a delivery pattern, not as a framework
-  provided by hedl itself.
+- The skill follows hedl's structural conventions (`install.py`, `plugin.json`)
+  as a delivery pattern, not as a framework provided by hedl itself.
+  Note: Kypr uses a single-tier model (`projections.json` manifest) and
+  directory-convention adapters (`adapters/<harness>/`) rather than hedl's
+  `tiers.json` and `adapters.json` — see `docs/adr/ADR-001-distribution-model.md`.
 - The full hedl model must be studied before any distribution design decisions are
   made (see WORK-0002 in the backlog).
 - Kypr must replicate hedl's projection model (how files land in target repos)
@@ -62,6 +67,9 @@ Kypr maintains isolated workspaces for different life contexts.
 - Workspaces are isolated from each other — state, references, and context from one
   workspace must not leak into another.
 - The workspace in use at any time is explicit and operator-controlled (not inferred).
+- Personal data in Kypr is: conversation context, session history, references, and
+  any content written to a workspace's state files. This must be encrypted via
+  git-crypt. Workspace names (identifiers) are metadata and may be stored plaintext.
 
 ## 6. Session Model
 
