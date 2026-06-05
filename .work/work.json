@@ -9,7 +9,7 @@
     {
       "id": "SEED-0001",
       "title": "build PR template check for this repo",
-      "phase": 1,
+      "phase": 0,
       "workstream": "WS-ARCH",
       "change_class": "chore",
       "status": "backlog",

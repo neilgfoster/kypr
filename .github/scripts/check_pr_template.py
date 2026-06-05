@@ -148,6 +148,18 @@ def check_changes(body: str) -> None:
         )
 
 
+def check_checklist(body: str) -> None:
+    content = section_content(body, "Checklist")
+    if not content or is_placeholder(content):
+        ERRORS.append("Section '## Checklist' is empty.")
+        return
+    unchecked = re.findall(r"^\s*- \[ \] ", content, re.MULTILINE)
+    if unchecked:
+        ERRORS.append(
+            f"Section '## Checklist' has {len(unchecked)} unchecked item(s) — mark each with [x] or remove."
+        )
+
+
 def main() -> int:
     # Reset module-level list so repeated calls within the same process
     # (e.g., test suites) do not accumulate findings across invocations.
@@ -164,6 +176,7 @@ def main() -> int:
     check_type_selected(body)
     check_changes(body)
     check_section_filled(body, "Validation")
+    check_checklist(body)
 
     if ERRORS:
         print("PR template validation failed:\n")
