@@ -7,22 +7,6 @@
   "active": [],
   "backlog": [
     {
-      "id": "WORK-0003",
-      "title": "ADR-001: distribution model decision",
-      "phase": 1,
-      "workstream": "WS-ARCH",
-      "change_class": "docs",
-      "status": "backlog",
-      "priority_band": "high",
-      "dependencies": ["WORK-0002"],
-      "description": "Record the architecture decision on whether Kypr follows hedl's distribution model exactly or adapts it. Must reference docs/hedl-study.md as evidence. Write docs/adr/ADR-001-distribution-model.md.",
-      "acceptance_criteria": [
-        "docs/adr/ADR-001-distribution-model.md exists.",
-        "ADR references hedl-study.md findings.",
-        "Decision is explicit: follow exactly, or adapt with documented reasons."
-      ]
-    },
-    {
       "id": "WORK-0004",
       "title": "update CLAUDE.md with requirements context",
       "phase": 1,
@@ -46,7 +30,7 @@
       "status": "backlog",
       "priority_band": "high",
       "dependencies": ["WORK-0001", "WORK-0002", "WORK-0003"],
-      "description": "Draft work items in .work/work.json for the full skill/kypr/ build (phase 2). Items must cover: skill directory scaffold, verify_encryption.py, install.py, kypr.py, adapters.json, workspace-state/ structure, and harness wiring for Claude Code. Each item must reference docs/requirements.md or ADR-001 as its source.",
+      "description": "Draft work items in .work/work.json for the full skill/kypr/ build (phase 2). Items must cover: skill directory scaffold, verify_encryption.py, install.py (with projections.json manifest), kypr.py, adapters/claude-code/ wiring, workspace-state/ structure. Each item must reference docs/requirements.md or ADR-001 as its source.",
       "acceptance_criteria": [
         "Phase 2 work items exist in .work/work.json backlog.",
         "Each item references requirements.md or an ADR.",
@@ -55,6 +39,23 @@
     }
   ],
   "completed": [
+    {
+      "id": "WORK-0003",
+      "title": "ADR-001: distribution model decision",
+      "phase": 1,
+      "workstream": "WS-ARCH",
+      "change_class": "docs",
+      "status": "complete",
+      "priority_band": "high",
+      "dependencies": ["WORK-0002"],
+      "completed_date": "2026-06-05",
+      "description": "Record the architecture decision on whether Kypr follows hedl's distribution model exactly or adapts it. Must reference docs/hedl-study.md as evidence. Write docs/adr/ADR-001-distribution-model.md.",
+      "acceptance_criteria": [
+        "docs/adr/ADR-001-distribution-model.md exists.",
+        "ADR references hedl-study.md findings.",
+        "Decision is explicit: follow exactly, or adapt with documented reasons."
+      ]
+    },
     {
       "id": "WORK-0002",
       "title": "hedl distribution model study",
