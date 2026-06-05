@@ -7,22 +7,6 @@
   "active": [],
   "backlog": [
     {
-      "id": "WORK-0006",
-      "title": "scaffold skill/kypr/ directory structure",
-      "phase": 2,
-      "workstream": "WS-ARCH",
-      "change_class": "chore",
-      "status": "backlog",
-      "priority_band": "high",
-      "dependencies": [],
-      "source": "docs/requirements.md §1, docs/adr/ADR-001-distribution-model.md",
-      "description": "Create the skill/kypr/ directory tree with placeholder files. Structure: skill/kypr/plugin.json, projections.json, install.py, scripts/verify_encryption.py, scripts/kypr.py, adapters/claude-code/ (empty), workspace-state/ (empty). No logic yet — scaffold only.",
-      "acceptance_criteria": [
-        "skill/kypr/ exists with all required subdirectories and placeholder files.",
-        "am_i_done.py passes on a feature branch."
-      ]
-    },
-    {
       "id": "WORK-0007",
       "title": "write plugin.json and projections.json",
       "phase": 2,
@@ -30,7 +14,9 @@
       "change_class": "chore",
       "status": "backlog",
       "priority_band": "high",
-      "dependencies": ["WORK-0006"],
+      "dependencies": [
+        "WORK-0006"
+      ],
       "source": "docs/adr/ADR-001-distribution-model.md §Consequences 1, 4",
       "description": "Write skill/kypr/plugin.json (name, version, description metadata) and skill/kypr/projections.json (flat JSON array of {source, target} pairs covering all files install.py must copy into a target repo).",
       "acceptance_criteria": [
@@ -47,7 +33,9 @@
       "change_class": "feat",
       "status": "backlog",
       "priority_band": "high",
-      "dependencies": ["WORK-0006"],
+      "dependencies": [
+        "WORK-0006"
+      ],
       "source": "docs/requirements.md §2",
       "description": "Write skill/kypr/scripts/verify_encryption.py. Must: (1) detect whether git-crypt is installed, (2) detect whether the repo has git-crypt configured, (3) exit 0 if correctly configured, exit 1 with a clear error message if not. This check is not optional and cannot be made conditional. It is called at session start and by install.py before projecting any files.",
       "acceptance_criteria": [
@@ -64,7 +52,10 @@
       "change_class": "feat",
       "status": "backlog",
       "priority_band": "high",
-      "dependencies": ["WORK-0007", "WORK-0008"],
+      "dependencies": [
+        "WORK-0007",
+        "WORK-0008"
+      ],
       "source": "docs/adr/ADR-001-distribution-model.md §Consequences 1, 5",
       "description": "Write skill/kypr/install.py. Must: (1) call verify_encryption.py and exit non-zero if it fails, (2) read projections.json, (3) copy each source file to its target path in the calling repo, (4) enforce path containment (no source or target escaping skill/kypr/ or the target repo root respectively), (5) skip .work/ if it already exists in the target repo, (6) be idempotent. No symlinks. No tier selection.",
       "acceptance_criteria": [
@@ -84,7 +75,9 @@
       "change_class": "feat",
       "status": "backlog",
       "priority_band": "high",
-      "dependencies": ["WORK-0008"],
+      "dependencies": [
+        "WORK-0008"
+      ],
       "source": "docs/requirements.md §1, §5, §6",
       "description": "Write skill/kypr/scripts/kypr.py. Must: (1) accept --status to print the active workspace name, (2) accept --workspace <name> to switch the active workspace, (3) read/write workspace state from workspace-state/ (encrypted via git-crypt), (4) call verify_encryption.py at startup and refuse to proceed if it fails. No harness-specific code — all I/O is plain stdout/stderr. kypr.py does NOT discover or load adapters; adapters are harness-level configuration (settings.json, startup.sh). Adding a second harness adapter requires no changes to kypr.py or any file outside adapters/.",
       "acceptance_criteria": [
@@ -102,7 +95,9 @@
       "change_class": "feat",
       "status": "backlog",
       "priority_band": "high",
-      "dependencies": ["WORK-0010"],
+      "dependencies": [
+        "WORK-0010"
+      ],
       "source": "docs/requirements.md §4, docs/adr/ADR-001-distribution-model.md §Consequences 2",
       "description": "Write the Claude Code harness adapter in skill/kypr/adapters/claude-code/. Must contain: settings.json (hook definitions wiring verify_encryption.py to SessionStart), startup.sh (session startup: calls verify_encryption.py, prints active workspace). No kypr core logic here — only harness wiring. Thin by design.",
       "acceptance_criteria": [
@@ -120,7 +115,9 @@
       "change_class": "chore",
       "status": "backlog",
       "priority_band": "high",
-      "dependencies": ["WORK-0010"],
+      "dependencies": [
+        "WORK-0010"
+      ],
       "source": "docs/requirements.md §5, §6",
       "description": "Define the workspace-state/ directory structure inside skill/kypr/. Must: (1) support at minimum personal and professional workspaces, (2) store the active workspace name as plaintext metadata, (3) be designed so all personal-data files (conversation context, session history, references, workspace content — per requirements.md §5) are in paths covered by the .gitattributes git-crypt filter. Document the structure with a README. No data written yet — structure and schema only. Depends on WORK-0013 (.gitattributes) being complete.",
       "acceptance_criteria": [
@@ -139,7 +136,9 @@
       "change_class": "chore",
       "status": "backlog",
       "priority_band": "high",
-      "dependencies": ["WORK-0012"],
+      "dependencies": [
+        "WORK-0012"
+      ],
       "source": "docs/requirements.md §2, §5",
       "description": "Create .gitattributes (or extend if present) with filter=git-crypt diff=git-crypt rules covering all personal-data paths in workspace-state/. Must be in place before any personal data files are committed. Rules must cover the paths defined in WORK-0012's structure.",
       "acceptance_criteria": [
@@ -167,6 +166,23 @@
   ],
   "completed": [
     {
+      "id": "WORK-0006",
+      "title": "scaffold skill/kypr/ directory structure",
+      "phase": 2,
+      "workstream": "WS-ARCH",
+      "change_class": "chore",
+      "status": "complete",
+      "priority_band": "high",
+      "dependencies": [],
+      "source": "docs/requirements.md §1, docs/adr/ADR-001-distribution-model.md",
+      "description": "Create the skill/kypr/ directory tree with placeholder files. Structure: skill/kypr/plugin.json, projections.json, install.py, scripts/verify_encryption.py, scripts/kypr.py, adapters/claude-code/ (empty), workspace-state/ (empty). No logic yet — scaffold only.",
+      "acceptance_criteria": [
+        "skill/kypr/ exists with all required subdirectories and placeholder files.",
+        "am_i_done.py passes on a feature branch."
+      ],
+      "completed_date": "2026-06-05"
+    },
+    {
       "id": "WORK-0005",
       "title": "define phase 2 build backlog",
       "phase": 1,
@@ -174,7 +190,11 @@
       "change_class": "chore",
       "status": "complete",
       "priority_band": "high",
-      "dependencies": ["WORK-0001", "WORK-0002", "WORK-0003"],
+      "dependencies": [
+        "WORK-0001",
+        "WORK-0002",
+        "WORK-0003"
+      ],
       "completed_date": "2026-06-05",
       "description": "Draft work items in .work/work.json for the full skill/kypr/ build (phase 2). Items must cover: skill directory scaffold, verify_encryption.py, install.py (with projections.json manifest), kypr.py, adapters/claude-code/ wiring, workspace-state/ structure. Each item must reference docs/requirements.md or ADR-001 as its source.",
       "acceptance_criteria": [
@@ -191,7 +211,9 @@
       "change_class": "docs",
       "status": "complete",
       "priority_band": "high",
-      "dependencies": ["WORK-0001"],
+      "dependencies": [
+        "WORK-0001"
+      ],
       "completed_date": "2026-06-05",
       "description": "CLAUDE.md was created as phase infrastructure. Once WORK-0001 (requirements.md) is complete, update CLAUDE.md to replace the 'NOT YET CREATED' placeholders with accurate references to docs/requirements.md content.",
       "acceptance_criteria": [
@@ -207,7 +229,9 @@
       "change_class": "docs",
       "status": "complete",
       "priority_band": "high",
-      "dependencies": ["WORK-0002"],
+      "dependencies": [
+        "WORK-0002"
+      ],
       "completed_date": "2026-06-05",
       "description": "Record the architecture decision on whether Kypr follows hedl's distribution model exactly or adapts it. Must reference docs/hedl-study.md as evidence. Write docs/adr/ADR-001-distribution-model.md.",
       "acceptance_criteria": [
