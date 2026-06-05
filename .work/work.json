@@ -1,18 +1,17 @@
 {
   "meta": {
     "current_phase": 2,
-    "active_item": null,
+    "active_item": "WORK-0007",
     "last_updated": "2026-06-05"
   },
-  "active": [],
-  "backlog": [
+  "active": [
     {
       "id": "WORK-0007",
       "title": "write plugin.json and projections.json",
       "phase": 2,
       "workstream": "WS-ARCH",
       "change_class": "chore",
-      "status": "backlog",
+      "status": "active",
       "priority_band": "high",
       "dependencies": [
         "WORK-0006"
@@ -24,7 +23,9 @@
         "skill/kypr/projections.json exists as a valid JSON array of {source, target} objects.",
         "Every file that install.py should copy is listed in projections.json."
       ]
-    },
+    }
+  ],
+  "backlog": [
     {
       "id": "WORK-0008",
       "title": "write verify_encryption.py",

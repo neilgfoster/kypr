@@ -1,5 +1,5 @@
 {
   "name": "kypr",
   "version": "0.0.1",
-  "description": "Placeholder — populated by WORK-0007."
+  "description": "Personal assistant framework delivered as an agent skill: a persistent, context-aware assistant with git-crypt-encrypted, isolated personal and professional workspaces."
 }
