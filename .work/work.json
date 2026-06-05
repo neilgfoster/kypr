@@ -54,17 +54,16 @@
     },
     {
       "id": "WORK-0004",
-      "title": "write CLAUDE.md for this repo",
+      "title": "update CLAUDE.md with requirements context",
       "phase": 1,
       "workstream": "WS-ARCH",
       "change_class": "docs",
       "status": "backlog",
       "priority_band": "high",
       "dependencies": ["WORK-0001"],
-      "description": "Create CLAUDE.md at repo root. Must cover: current phase and active work item, project description (from requirements.md), key constraints (git-crypt mandatory, no skill code until phase 2, hedl distribution model), and where to find things (.work/, docs/, .github/). Also fix H1 CONDITIONAL from SEED-0001: update check_pr_template.py check_checklist() to handle '(or N/A with reason)' unchecked items.",
+      "description": "CLAUDE.md was created as phase infrastructure. Once WORK-0001 (requirements.md) is complete, update CLAUDE.md to replace the 'NOT YET CREATED' placeholders with accurate references to docs/requirements.md content.",
       "acceptance_criteria": [
-        "CLAUDE.md exists at repo root with phase, project description, constraints, and structure.",
-        "check_checklist() handles unchecked items with inline '(or N/A with reason)' justification (similar to check_work_item 'none' logic).",
+        "CLAUDE.md references docs/requirements.md and reflects accurate project description.",
         "am_i_done.py passes on a feature branch."
       ]
     },
