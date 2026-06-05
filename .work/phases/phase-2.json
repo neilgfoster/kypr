@@ -1,0 +1,42 @@
+{
+  "phase": 2,
+  "name": "Build",
+  "goal": "Build the skill/kypr/ skeleton: directory structure, install.py, verify_encryption.py, kypr.py, Claude Code adapter, workspace-state/ layout, and .gitattributes. All git-crypt security constraints must be enforced before any personal data paths exist.",
+  "status": "active",
+  "started": "2026-06-05",
+  "completed": null,
+  "definition_of_done": [
+    "skill/kypr/ directory structure exists with all files from projections.json",
+    "verify_encryption.py exits 0 in a correctly configured repo and exits 1 with a clear error otherwise; no bypass path exists",
+    "install.py copies all projections, calls verify_encryption.py, is idempotent, enforces path containment, and skips .work/ if already present",
+    "kypr.py is agent-agnostic: --status and --workspace <name> work; calls verify_encryption.py at startup",
+    "adapters/claude-code/ contains settings.json (SessionStart hook) and startup.sh; no core logic in the adapter",
+    "workspace-state/ layout defined and documented; all personal-data paths covered by .gitattributes filter=git-crypt rules",
+    ".gitattributes exists with at least one filter=git-crypt rule covering workspace-state/ personal-data paths",
+    "am_i_done.py passes on all phase 2 feature branches"
+  ],
+  "constraints": [
+    "No personal data files committed before .gitattributes git-crypt rules are in place (WORK-0013 before WORK-0012 data)",
+    "verify_encryption.py must be called before any file projection or session start — not optional, not conditional",
+    "kypr.py must contain no harness-specific code; adding a second harness requires no changes outside adapters/",
+    "ReDoS fix (WORK-0014) is low priority but must not be silently dropped"
+  ],
+  "workstreams": [
+    {
+      "id": "WS-ARCH",
+      "name": "Architecture and Build",
+      "items": ["WORK-0006", "WORK-0007", "WORK-0008", "WORK-0009", "WORK-0010", "WORK-0011", "WORK-0012", "WORK-0013", "WORK-0014"]
+    }
+  ],
+  "assumptions_to_validate": [
+    "Claude Code settings.json supports a SessionStart hook that can call an external script",
+    "git-crypt status exits 0 reliably in a fully unlocked clone (not just initialised)",
+    "projections.json flat array is sufficient for install.py without needing hedl's tier resolution logic"
+  ],
+  "learning_goals": [
+    "Does the single-tier projections.json model cover all projection cases without edge-case workarounds?",
+    "Is the directory-convention adapter boundary (no adapters.json) truly sufficient for multi-harness support?",
+    "What is the minimum viable workspace-state/ schema for personal/professional isolation?"
+  ],
+  "next_phase_trigger": "All DoD items verified. Run /phase-complete."
+}

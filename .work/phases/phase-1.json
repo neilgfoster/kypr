@@ -2,9 +2,9 @@
   "phase": 1,
   "name": "Project Initiation",
   "goal": "Understand hedl's distribution model, document Kypr's requirements, and define the phase 2 build scope. No skill code is written in this phase.",
-  "status": "active",
+  "status": "complete",
   "started": "2026-06-05",
-  "completed": null,
+  "completed": "2026-06-05",
   "definition_of_done": [
     "docs/requirements.md exists, covering: what Kypr is, security model (git-crypt mandatory, no bypass), distribution (hedl model), agent compatibility (agent-agnostic core, thin harness wiring), workspace isolation (personal/professional), session model (interactive only, no background processes)",
     "docs/hedl-study.md exists, documenting hedl's distribution model, directory structure, install mechanism, and constraints Kypr must replicate or diverge from",

@@ -1,6 +1,6 @@
 {
   "meta": {
-    "current_phase": 1,
+    "current_phase": 2,
     "active_item": null,
     "last_updated": "2026-06-05"
   },
@@ -86,7 +86,7 @@
       "priority_band": "high",
       "dependencies": ["WORK-0008"],
       "source": "docs/requirements.md §1, §5, §6",
-      "description": "Write skill/kypr/scripts/kypr.py. Must: (1) accept --status to print the active workspace name, (2) accept --workspace <name> to switch the active workspace, (3) read/write workspace state from workspace-state/ (encrypted via git-crypt), (4) call verify_encryption.py at startup and refuse to proceed if it fails. No harness-specific code — all I/O is plain stdout/stderr.",
+      "description": "Write skill/kypr/scripts/kypr.py. Must: (1) accept --status to print the active workspace name, (2) accept --workspace <name> to switch the active workspace, (3) read/write workspace state from workspace-state/ (encrypted via git-crypt), (4) call verify_encryption.py at startup and refuse to proceed if it fails. No harness-specific code — all I/O is plain stdout/stderr. kypr.py does NOT discover or load adapters; adapters are harness-level configuration (settings.json, startup.sh). Adding a second harness adapter requires no changes to kypr.py or any file outside adapters/.",
       "acceptance_criteria": [
         "kypr.py --status prints the active workspace name.",
         "kypr.py --workspace <name> switches the active workspace.",
@@ -122,12 +122,46 @@
       "priority_band": "high",
       "dependencies": ["WORK-0010"],
       "source": "docs/requirements.md §5, §6",
-      "description": "Define the workspace-state/ directory structure inside skill/kypr/. Must: (1) support at minimum personal and professional workspaces, (2) store the active workspace name, (3) be designed so all files that contain personal data are covered by git-crypt. Document the structure with a README. No data written yet — structure and schema only.",
+      "description": "Define the workspace-state/ directory structure inside skill/kypr/. Must: (1) support at minimum personal and professional workspaces, (2) store the active workspace name as plaintext metadata, (3) be designed so all personal-data files (conversation context, session history, references, workspace content — per requirements.md §5) are in paths covered by the .gitattributes git-crypt filter. Document the structure with a README. No data written yet — structure and schema only. Depends on WORK-0013 (.gitattributes) being complete.",
       "acceptance_criteria": [
         "workspace-state/ layout documented (README or inline comments).",
         "Structure supports at minimum two isolated workspaces (personal, professional).",
-        "All personal-data files are in paths covered by .gitattributes git-crypt filter.",
-        "Active workspace name is stored in a readable location."
+        "All personal-data files (context, history, references, content) are in paths covered by .gitattributes git-crypt filter.",
+        "Active workspace name (metadata) is stored plaintext.",
+        ".gitattributes git-crypt rules for workspace-state/ paths exist (WORK-0013)."
+      ]
+    },
+    {
+      "id": "WORK-0013",
+      "title": "create .gitattributes with git-crypt filter rules",
+      "phase": 2,
+      "workstream": "WS-ARCH",
+      "change_class": "chore",
+      "status": "backlog",
+      "priority_band": "high",
+      "dependencies": ["WORK-0012"],
+      "source": "docs/requirements.md §2, §5",
+      "description": "Create .gitattributes (or extend if present) with filter=git-crypt diff=git-crypt rules covering all personal-data paths in workspace-state/. Must be in place before any personal data files are committed. Rules must cover the paths defined in WORK-0012's structure.",
+      "acceptance_criteria": [
+        ".gitattributes exists with at least one filter=git-crypt rule.",
+        "All personal-data paths from WORK-0012 are covered by a filter=git-crypt rule.",
+        "verify_encryption.py check (2) — '.gitattributes contains at least one filter=git-crypt rule' — passes after this item."
+      ]
+    },
+    {
+      "id": "WORK-0014",
+      "title": "fix ReDoS in check_pr_template.py",
+      "phase": 2,
+      "workstream": "WS-ARCH",
+      "change_class": "fix",
+      "status": "backlog",
+      "priority_band": "low",
+      "dependencies": [],
+      "source": ".work/reviews/adversarial-review-2026-06-05-phase-transition/report.md SEC1/SEC2",
+      "description": "Pre-existing ReDoS in check_pr_template.py: _FENCED_BLOCK regex (line 58) and section_content pattern (line 77) use unbounded .* with re.DOTALL — catastrophic backtracking possible on adversarial input. Fix by bounding the match (possessive quantifier or atomic group equivalent) or by using a line-by-line parser instead of a single regex over the full body.",
+      "acceptance_criteria": [
+        "strip_noise() and section_content() do not exhibit catastrophic backtracking on inputs with many nested backtick or heading sequences.",
+        "am_i_done.py passes."
       ]
     }
   ],

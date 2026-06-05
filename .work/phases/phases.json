@@ -1,5 +1,5 @@
 {
-  "current_phase": 1,
+  "current_phase": 2,
   "phases": [
     {
       "phase": 0,
@@ -10,8 +10,14 @@
     {
       "phase": 1,
       "name": "Project Initiation",
-      "status": "active",
+      "status": "complete",
       "file": ".work/phases/phase-1.json"
+    },
+    {
+      "phase": 2,
+      "name": "Build",
+      "status": "active",
+      "file": ".work/phases/phase-2.json"
     }
   ],
 
@@ -21,6 +27,12 @@
       "to": 1,
       "date": "2026-06-05",
       "reason": "Operator direction change — phase 0 DoD unmet (skill/kypr/ never started). Phase 1 is project initiation and scope-setting; no building."
+    },
+    {
+      "from": 1,
+      "to": 2,
+      "date": "2026-06-05",
+      "reason": "Phase 1 DoD verified. All requirements, hedl study, ADR-001, and phase 2 backlog complete. Version 0.0.1 released. Phase adversarial review: CONDITIONAL (all findings fixed)."
     }
   ],
 
