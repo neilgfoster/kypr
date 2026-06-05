@@ -1,0 +1,36 @@
+---
+description: Hedl session discipline — one work item at a time, surgical changes
+globs: ["**"]
+alwaysApply: true
+---
+
+# Hedl — session and work-item discipline
+
+## One item at a time
+
+Check `.work/work.json` → `meta.active_item` for the current work item.
+Do not start a new item until the active one is committed and its PR is open.
+
+## Orient first
+
+Before coding, read the active item's `acceptance_criteria`. Define what
+passing looks like before implementing it.
+
+## Surgical changes
+
+Touch only files the work item requires. Match existing style. Do not clean
+up adjacent code that isn't broken. Every changed line traces to the active
+work item.
+
+## Loop
+
+1. Read `.work/work.json` active item + acceptance criteria
+2. Implement exactly what the criteria require — no more
+3. Run `python3 .github/scripts/am_i_done.py`
+4. Run adversarial review (see `hedl-panel.mdc`)
+5. Commit and open a PR
+
+## Work-item state
+
+Work items live in `.work/work.json` under `active`, `backlog`, `completed`.
+Do not edit `.work/` state files directly.

@@ -1,0 +1,41 @@
+{
+  "phase": 0,
+  "name": "Seed",
+  "goal": "Build and distribute the Kypr skill skeleton with mandatory encryption, isolated workspaces, and agent-agnostic harness wiring.",
+  "status": "active",
+  "started": "2026-06-05",
+  "completed": null,
+  "definition_of_done": [
+    "skill/kypr/ exists with all required files (SKILL.md, plugin.json, adapters.json, tiers.json, agents/, commands/, scripts/, integrations/, workspace-state/, references/)",
+    "skill/kypr/scripts/verify_encryption.py exits 1 without git-crypt and 0 with it correctly configured",
+    "skill/kypr/scripts/install.py --tier standard installs the skill into a target repo without error",
+    "skill/kypr/scripts/kypr.py --status prints active workspace",
+    "CLAUDE.md and README.md are present and accurate",
+    "am_i_done.py passes"
+  ],
+  "constraints": [
+    "am_i_done.py must remain deterministic — no inference in the gate",
+    "Encryption check in verify_encryption.py must not be weakened or made optional",
+    "Kypr skill must follow hedl's distribution model exactly"
+  ],
+  "workstreams": [
+    {
+      "id": "WS-PLAN",
+      "name": "Planning",
+      "items": []
+    },
+    {
+      "id": "WS-ARCH",
+      "name": "Architecture",
+      "items": []
+    }
+  ],
+  "learning_goals": [
+    "Validate that hedl's symlink distribution model works cleanly for a second skill",
+    "Validate that agent-agnostic skill design is achievable with thin per-harness adapters"
+  ],
+  "assumptions_to_validate": [
+    "git-crypt is sufficient for personal data encryption without additional tooling"
+  ],
+  "next_phase_trigger": "All DoD items verified. Run /phase-complete."
+}

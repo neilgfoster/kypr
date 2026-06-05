@@ -1,0 +1,29 @@
+{
+  "schema_version": "2",
+  "meta": {
+    "project": "kypr",
+    "work_item_prefix": "WORK",
+    "phase": 0,
+    "last_updated": "2026-06-05",
+    "description": "Personal assistant framework delivered as an agent skill"
+  },
+  "project_version": "0.0.0",
+  "releases": {},
+  "state": {
+    "phase_0_complete": false,
+    "_edit_me": "Update phase_0_complete to true when /phase-complete has been run."
+  },
+  "structure": {
+    "CLAUDE.md": "primary project context — read every session",
+    ".work/work.json": "backlog and active work items",
+    ".work/context.json": "this file — repo state",
+    ".work/session.json": "last session summary",
+    ".work/phases/": "phase definitions and registry",
+    ".work/decisions/": "architecture decision records (ADRs)",
+    ".work/reviews/": "adversarial review verdicts",
+    ".claude/commands/": "5 core slash commands",
+    ".claude/agents/": "8 core adversarial review agents"
+  },
+  "decisions": [],
+  "notes": "Clean v0 starting state. Kypr skill skeleton is the Phase 0 goal."
+}

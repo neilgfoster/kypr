@@ -1,0 +1,27 @@
+{
+  "meta": {
+    "current_phase": 0,
+    "active_item": null,
+    "last_updated": "2026-06-05"
+  },
+  "active": [],
+  "backlog": [],
+  "completed": [
+    {
+      "id": "SEED-0001",
+      "title": "build PR template check for this repo",
+      "phase": 0,
+      "workstream": "WS-ARCH",
+      "change_class": "chore",
+      "status": "complete",
+      "priority_band": "high",
+      "dependencies": [],
+      "completed_date": "2026-06-05",
+      "description": "Hedl ships check_pr_template.py as a static placeholder that validates Hedl's own section schema. This item replaces it with a repo-specific version derived from the actual .github/PULL_REQUEST_TEMPLATE.md. Implementation: read .github/PULL_REQUEST_TEMPLATE.md, extract every '## Heading' section, generate .github/scripts/check_pr_template.py that validates a PR body has each section filled with non-placeholder content. The generated script uses the same is_placeholder / section_content pattern as the static version. Commit the result. The gate's template check skips until this file exists.",
+      "acceptance_criteria": [
+        ".github/scripts/check_pr_template.py exists and validates the sections present in .github/PULL_REQUEST_TEMPLATE.md.",
+        "am_i_done.py --pr N template check runs (no longer skips) after this item."
+      ]
+    }
+  ]
+}

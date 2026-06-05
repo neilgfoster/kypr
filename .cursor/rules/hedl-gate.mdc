@@ -1,0 +1,50 @@
+---
+description: Hedl completion gate — when and how to run am_i_done.py
+globs: ["**"]
+alwaysApply: true
+---
+
+# Hedl — completion gate
+
+Before declaring any task complete, run:
+
+```sh
+python3 .github/scripts/am_i_done.py
+```
+
+For PR checks (adds template, threads, CI, Dependabot):
+
+```sh
+python3 .github/scripts/am_i_done.py --pr <PR_NUMBER>
+```
+
+Gate exits `0` = done. Non-zero = not done — fix what it reports, never
+claim done on a red gate.
+
+The gate is deterministic (stdlib Python, no inference). Checks: clean tree,
+branch naming, lint, types, tests. CI superset adds PR-template validity,
+stale work-item IDs, unresolved threads, Dependabot alerts.
+
+Customise via `hedl.toml`:
+
+```toml
+[verify]
+lint  = "golangci-lint run"
+types = "tsc --noEmit"
+test  = "go test ./..."
+```
+
+## Cursor stop hook
+
+Wire the gate as a Cursor `stop` hook so it blocks sign-off on a red gate.
+In your Cursor hook configuration (`.cursor/hooks/` or workspace settings):
+
+```json
+{
+  "event": "stop",
+  "command": "python3 .github/scripts/stop_gate_check.py"
+}
+```
+
+`stop_gate_check.py` is the shared gate-check hook used across Claude Code,
+Copilot, and Cursor. Exit 2 = block stop; includes infinite-loop guard.

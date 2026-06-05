@@ -1,0 +1,44 @@
+---
+description: Hedl adversarial review panel — convene before raising a PR
+globs: ["**"]
+alwaysApply: false
+---
+
+# Hedl — adversarial review panel
+
+Before raising a PR, convene the adversarial review panel. Use Cursor's
+native parallel agent capabilities to fan out the specialists simultaneously.
+
+## Dispatch
+
+First, select the panel using the review dispatcher:
+
+> "You are review-dispatcher. Read the diff and select the minimal panel
+> from: scope-auditor, edge-case-hunter, security-auditor, determinism-auditor,
+> historian, simplicity-enforcer, existential-challenger.
+> Return a JSON object with a 'RUN' array."
+
+## Run in parallel (Cursor parallel agents)
+
+Fan out all selected specialists simultaneously. Each reviews independently.
+Agent prompts are in `skill/hedl/references/review-library.md`.
+
+Key agents:
+- **scope-auditor** — finds work exceeding stated scope
+- **edge-case-hunter** — finds inputs and sequences that break assumptions
+- **security-auditor** — finds injection flaws, auth gaps, unsafe operations
+- **determinism-auditor** — finds where LLM inference replaces a deterministic function
+- **existential-challenger** — challenges whether the work is necessary
+- **historian** — finds contradictions with prior ADRs or principles
+
+## Verdict
+
+Findings carry severity: BLOCKING / SIGNIFICANT / MINOR.
+A synthesis step collects all findings → PASS / CONDITIONAL / FAIL.
+Fix all BLOCKING findings before merging.
+
+## Note on routing
+
+Cursor has no native NL→skill routing. Invoke panel review explicitly:
+describe the task in natural language and reference this file, or invoke
+the review steps directly from the command description above.
