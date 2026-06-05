@@ -7,21 +7,6 @@
   "active": [],
   "backlog": [
     {
-      "id": "WORK-0001",
-      "title": "write requirements document",
-      "phase": 1,
-      "workstream": "WS-REQ",
-      "change_class": "docs",
-      "status": "backlog",
-      "priority_band": "high",
-      "dependencies": [],
-      "description": "Produce docs/requirements.md from the operator-provided requirements. Cover: what Kypr is (personal assistant framework, agent skill, persistent/context-aware, isolated workspaces); security model (git-crypt mandatory, verify at session start, refuse if not configured, no bypass); distribution (hedl delivery model); agent compatibility (agent-agnostic core, thin harness wiring); workspace isolation (personal and professional); session model (interactive only, no background processes, no servers).",
-      "acceptance_criteria": [
-        "docs/requirements.md exists and covers all six requirement areas above.",
-        "Each section is traceable to the operator-provided requirements text."
-      ]
-    },
-    {
       "id": "WORK-0002",
       "title": "hedl distribution model study",
       "phase": 1,
@@ -30,7 +15,7 @@
       "status": "backlog",
       "priority_band": "high",
       "dependencies": [],
-      "description": "Study neilgfoster/hedl to document its distribution model for Kypr to replicate. Read: SKILL.md, plugin.json, tiers.json, adapters.json, install.py, the skill directory structure, and how files are projected into target repos. Document what Kypr must replicate exactly, what it may adapt, and any known constraints (e.g. symlinks vs copies for CI compatibility). Output: docs/hedl-study.md.",
+      "description": "Study neilgfoster/hedl to understand its skill delivery pattern for Kypr to follow. Hedl is a reference example, not a framework. Read: SKILL.md, plugin.json, tiers.json, adapters.json, install.py, the skill directory structure, and how files land in target repos. Document what conventions Kypr should adopt, what it may adapt, and any known constraints (e.g. symlinks vs copies for CI compatibility). Output: docs/hedl-study.md.",
       "acceptance_criteria": [
         "docs/hedl-study.md exists.",
         "Document covers: directory structure, install mechanism, projection model (how files land in target repos), known constraints, and open questions for Kypr."
@@ -85,6 +70,22 @@
     }
   ],
   "completed": [
+    {
+      "id": "WORK-0001",
+      "title": "write requirements document",
+      "phase": 1,
+      "workstream": "WS-REQ",
+      "change_class": "docs",
+      "status": "complete",
+      "priority_band": "high",
+      "dependencies": [],
+      "completed_date": "2026-06-05",
+      "description": "Produce docs/requirements.md from the operator-provided requirements. Cover: what Kypr is (personal assistant framework, agent skill, persistent/context-aware, isolated workspaces); security model (git-crypt mandatory, verify at session start, refuse if not configured, no bypass); distribution (hedl delivery model); agent compatibility (agent-agnostic core, thin harness wiring); workspace isolation (personal and professional); session model (interactive only, no background processes, no servers).",
+      "acceptance_criteria": [
+        "docs/requirements.md exists and covers all six requirement areas above.",
+        "Each section is traceable to the operator-provided requirements text."
+      ]
+    },
     {
       "id": "SEED-0001",
       "title": "build PR template check for this repo",
