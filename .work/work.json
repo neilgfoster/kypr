@@ -7,21 +7,6 @@
   "active": [],
   "backlog": [
     {
-      "id": "WORK-0004",
-      "title": "update CLAUDE.md with requirements context",
-      "phase": 1,
-      "workstream": "WS-ARCH",
-      "change_class": "docs",
-      "status": "backlog",
-      "priority_band": "high",
-      "dependencies": ["WORK-0001"],
-      "description": "CLAUDE.md was created as phase infrastructure. Once WORK-0001 (requirements.md) is complete, update CLAUDE.md to replace the 'NOT YET CREATED' placeholders with accurate references to docs/requirements.md content.",
-      "acceptance_criteria": [
-        "CLAUDE.md references docs/requirements.md and reflects accurate project description.",
-        "am_i_done.py passes on a feature branch."
-      ]
-    },
-    {
       "id": "WORK-0005",
       "title": "define phase 2 build backlog",
       "phase": 1,
@@ -39,6 +24,22 @@
     }
   ],
   "completed": [
+    {
+      "id": "WORK-0004",
+      "title": "update CLAUDE.md with requirements context",
+      "phase": 1,
+      "workstream": "WS-ARCH",
+      "change_class": "docs",
+      "status": "complete",
+      "priority_band": "high",
+      "dependencies": ["WORK-0001"],
+      "completed_date": "2026-06-05",
+      "description": "CLAUDE.md was created as phase infrastructure. Once WORK-0001 (requirements.md) is complete, update CLAUDE.md to replace the 'NOT YET CREATED' placeholders with accurate references to docs/requirements.md content.",
+      "acceptance_criteria": [
+        "CLAUDE.md references docs/requirements.md and reflects accurate project description.",
+        "am_i_done.py passes on a feature branch."
+      ]
+    },
     {
       "id": "WORK-0003",
       "title": "ADR-001: distribution model decision",

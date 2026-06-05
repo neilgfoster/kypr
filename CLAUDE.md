@@ -19,8 +19,8 @@ Active work: see `.work/work.json` backlog.
 - **git-crypt is mandatory.** Verify encryption at every session start. Refuse to
   proceed if not correctly configured. This check is not optional and cannot be bypassed.
 - **No skill code in phase 1.** All building happens in phase 2+.
-- **hedl distribution model.** Study `neilgfoster/hedl` before designing anything.
-  See `docs/hedl-study.md` when available.
+- **hedl distribution model.** Hedl is a reference pattern for skill delivery, not a
+  framework. See `docs/hedl-study.md` and `docs/adr/ADR-001-distribution-model.md`.
 - **Agent-agnostic core.** Kypr must work with any agent tool. Harness-specific
   wiring is thin and isolated in `adapters/`.
 
@@ -29,6 +29,7 @@ Active work: see `.work/work.json` backlog.
 ```
 .work/            — backlog, phases, decisions, reviews
 docs/             — requirements, hedl study, ADRs
+docs/adr/         — architecture decision records
 .github/scripts/  — gate (am_i_done.py) and PR template check
 .claude/          — commands, agents, settings
 skill/kypr/       — NOT YET CREATED (phase 2)
@@ -38,12 +39,11 @@ skill/kypr/       — NOT YET CREATED (phase 2)
 
 - `.work/work.json` — active and backlog items
 - `.work/phases/phase-1.json` — current phase DoD and constraints
-- `.work/decisions/` — ADRs and phase retrospectives
-- `docs/requirements.md` — NOT YET CREATED (WORK-0001)
-- `docs/hedl-study.md` — NOT YET CREATED (WORK-0002)
+- `.work/retrospectives/` — phase retrospectives
+- `docs/requirements.md` — project requirements (WORK-0001, complete)
+- `docs/hedl-study.md` — hedl distribution pattern study (WORK-0002, complete)
+- `docs/adr/ADR-001-distribution-model.md` — distribution model decision (WORK-0003, complete)
 
 ## Known open issues
 
-- **H1** (CONDITIONAL from SEED-0001): `check_checklist()` in
-  `.github/scripts/check_pr_template.py` does not handle unchecked items
-  accompanied by "(or N/A with reason)". Fix in WORK-0004.
+None.
