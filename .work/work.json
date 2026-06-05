@@ -1,27 +1,10 @@
 {
   "meta": {
     "current_phase": 2,
-    "active_item": "WORK-0006",
+    "active_item": null,
     "last_updated": "2026-06-05"
   },
-  "active": [
-    {
-      "id": "WORK-0006",
-      "title": "scaffold skill/kypr/ directory structure",
-      "phase": 2,
-      "workstream": "WS-ARCH",
-      "change_class": "chore",
-      "status": "active",
-      "priority_band": "high",
-      "dependencies": [],
-      "source": "docs/requirements.md §1, docs/adr/ADR-001-distribution-model.md",
-      "description": "Create the skill/kypr/ directory tree with placeholder files. Structure: skill/kypr/plugin.json, projections.json, install.py, scripts/verify_encryption.py, scripts/kypr.py, adapters/claude-code/ (empty), workspace-state/ (empty). No logic yet — scaffold only.",
-      "acceptance_criteria": [
-        "skill/kypr/ exists with all required subdirectories and placeholder files.",
-        "am_i_done.py passes on a feature branch."
-      ]
-    }
-  ],
+  "active": [],
   "backlog": [
     {
       "id": "WORK-0007",
@@ -182,6 +165,23 @@
     }
   ],
   "completed": [
+    {
+      "id": "WORK-0006",
+      "title": "scaffold skill/kypr/ directory structure",
+      "phase": 2,
+      "workstream": "WS-ARCH",
+      "change_class": "chore",
+      "status": "complete",
+      "priority_band": "high",
+      "dependencies": [],
+      "source": "docs/requirements.md §1, docs/adr/ADR-001-distribution-model.md",
+      "description": "Create the skill/kypr/ directory tree with placeholder files. Structure: skill/kypr/plugin.json, projections.json, install.py, scripts/verify_encryption.py, scripts/kypr.py, adapters/claude-code/ (empty), workspace-state/ (empty). No logic yet — scaffold only.",
+      "acceptance_criteria": [
+        "skill/kypr/ exists with all required subdirectories and placeholder files.",
+        "am_i_done.py passes on a feature branch."
+      ],
+      "completed_date": "2026-06-05"
+    },
     {
       "id": "WORK-0005",
       "title": "define phase 2 build backlog",

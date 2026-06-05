@@ -1,10 +1,8 @@
 {
   "date": "2026-06-05",
-  "completed": ["SEED-0001"],
-  "decisions": [
-    "SEED-0001 reclassified from phase 1 to phase 0 — no phase 0 items existed; operator approved"
-  ],
-  "next_item": null,
+  "completed": ["WORK-0006"],
+  "decisions": [],
+  "next_item": "WORK-0007",
   "blockers": [],
-  "notes": "SEED-0001 delivered. CONDITIONAL adversarial finding H1 (check_checklist does not handle '(or N/A with reason)' unchecked items) is a known limitation to address before /phase-complete. All 7 CI checks green. PR #1 awaiting operator merge."
+  "notes": "WORK-0006 scaffold delivered. Adversarial review PASS (panel: scope-auditor, historian, new-engineer, security-auditor; two BLOCKING findings refuted deterministically via git ls-tree). Carry-forward before /phase-complete: N1 — SKILL.md has no owning work item despite hedl-study.md:28 and multi-harness claims; file a backlog item or record an explicit deferral. Optional hardening before WORK-0012: .gitignore/.gitattributes defence-in-depth for workspace-state/. PR #14 (phase transition) merged earlier this session after PR-template fix."
 }
