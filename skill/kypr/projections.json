@@ -1,1 +1,10 @@
-[]
+[
+  {
+    "source": "scripts/kypr.py",
+    "target": ".kypr/scripts/kypr.py"
+  },
+  {
+    "source": "scripts/verify_encryption.py",
+    "target": ".kypr/scripts/verify_encryption.py"
+  }
+]
