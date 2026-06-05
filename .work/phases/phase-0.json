@@ -2,9 +2,9 @@
   "phase": 0,
   "name": "Seed",
   "goal": "Build and distribute the Kypr skill skeleton with mandatory encryption, isolated workspaces, and agent-agnostic harness wiring.",
-  "status": "active",
+  "status": "complete",
   "started": "2026-06-05",
-  "completed": null,
+  "completed": "2026-06-05",
   "definition_of_done": [
     "skill/kypr/ exists with all required files (SKILL.md, plugin.json, adapters.json, tiers.json, agents/, commands/, scripts/, integrations/, workspace-state/, references/)",
     "skill/kypr/scripts/verify_encryption.py exits 1 without git-crypt and 0 with it correctly configured",

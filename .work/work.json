@@ -1,11 +1,90 @@
 {
   "meta": {
-    "current_phase": 0,
+    "current_phase": 1,
     "active_item": null,
     "last_updated": "2026-06-05"
   },
   "active": [],
-  "backlog": [],
+  "backlog": [
+    {
+      "id": "WORK-0001",
+      "title": "write requirements document",
+      "phase": 1,
+      "workstream": "WS-REQ",
+      "change_class": "docs",
+      "status": "backlog",
+      "priority_band": "high",
+      "dependencies": [],
+      "description": "Produce docs/requirements.md from the operator-provided requirements. Cover: what Kypr is (personal assistant framework, agent skill, persistent/context-aware, isolated workspaces); security model (git-crypt mandatory, verify at session start, refuse if not configured, no bypass); distribution (hedl delivery model); agent compatibility (agent-agnostic core, thin harness wiring); workspace isolation (personal and professional); session model (interactive only, no background processes, no servers).",
+      "acceptance_criteria": [
+        "docs/requirements.md exists and covers all six requirement areas above.",
+        "Each section is traceable to the operator-provided requirements text."
+      ]
+    },
+    {
+      "id": "WORK-0002",
+      "title": "hedl distribution model study",
+      "phase": 1,
+      "workstream": "WS-TECH",
+      "change_class": "docs",
+      "status": "backlog",
+      "priority_band": "high",
+      "dependencies": [],
+      "description": "Study neilgfoster/hedl to document its distribution model for Kypr to replicate. Read: SKILL.md, plugin.json, tiers.json, adapters.json, install.py, the skill directory structure, and how files are projected into target repos. Document what Kypr must replicate exactly, what it may adapt, and any known constraints (e.g. symlinks vs copies for CI compatibility). Output: docs/hedl-study.md.",
+      "acceptance_criteria": [
+        "docs/hedl-study.md exists.",
+        "Document covers: directory structure, install mechanism, projection model (how files land in target repos), known constraints, and open questions for Kypr."
+      ]
+    },
+    {
+      "id": "WORK-0003",
+      "title": "ADR-001: distribution model decision",
+      "phase": 1,
+      "workstream": "WS-ARCH",
+      "change_class": "docs",
+      "status": "backlog",
+      "priority_band": "high",
+      "dependencies": ["WORK-0002"],
+      "description": "Record the architecture decision on whether Kypr follows hedl's distribution model exactly or adapts it. Must reference docs/hedl-study.md as evidence. Write docs/adr/ADR-001-distribution-model.md.",
+      "acceptance_criteria": [
+        "docs/adr/ADR-001-distribution-model.md exists.",
+        "ADR references hedl-study.md findings.",
+        "Decision is explicit: follow exactly, or adapt with documented reasons."
+      ]
+    },
+    {
+      "id": "WORK-0004",
+      "title": "write CLAUDE.md for this repo",
+      "phase": 1,
+      "workstream": "WS-ARCH",
+      "change_class": "docs",
+      "status": "backlog",
+      "priority_band": "high",
+      "dependencies": ["WORK-0001"],
+      "description": "Create CLAUDE.md at repo root. Must cover: current phase and active work item, project description (from requirements.md), key constraints (git-crypt mandatory, no skill code until phase 2, hedl distribution model), and where to find things (.work/, docs/, .github/). Also fix H1 CONDITIONAL from SEED-0001: update check_pr_template.py check_checklist() to handle '(or N/A with reason)' unchecked items.",
+      "acceptance_criteria": [
+        "CLAUDE.md exists at repo root with phase, project description, constraints, and structure.",
+        "check_checklist() handles unchecked items with inline '(or N/A with reason)' justification (similar to check_work_item 'none' logic).",
+        "am_i_done.py passes on a feature branch."
+      ]
+    },
+    {
+      "id": "WORK-0005",
+      "title": "define phase 2 build backlog",
+      "phase": 1,
+      "workstream": "WS-ARCH",
+      "change_class": "chore",
+      "status": "backlog",
+      "priority_band": "high",
+      "dependencies": ["WORK-0001", "WORK-0002", "WORK-0003"],
+      "description": "Draft work items in .work/work.json for the full skill/kypr/ build (phase 2). Items must cover: skill directory scaffold, verify_encryption.py, install.py, kypr.py, adapters.json, workspace-state/ structure, and harness wiring for Claude Code. Each item must reference docs/requirements.md or ADR-001 as its source.",
+      "acceptance_criteria": [
+        "Phase 2 work items exist in .work/work.json backlog.",
+        "Each item references requirements.md or an ADR.",
+        "Items collectively cover all phase-2 DoD criteria."
+      ]
+    }
+  ],
   "completed": [
     {
       "id": "SEED-0001",

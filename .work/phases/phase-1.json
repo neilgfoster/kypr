@@ -1,0 +1,47 @@
+{
+  "phase": 1,
+  "name": "Project Initiation",
+  "goal": "Understand hedl's distribution model, document Kypr's requirements, and define the phase 2 build scope. No skill code is written in this phase.",
+  "status": "active",
+  "started": "2026-06-05",
+  "completed": null,
+  "definition_of_done": [
+    "docs/requirements.md exists, covering: what Kypr is, security model (git-crypt mandatory, no bypass), distribution (hedl model), agent compatibility (agent-agnostic core, thin harness wiring), workspace isolation (personal/professional), session model (interactive only, no background processes)",
+    "docs/hedl-study.md exists, documenting hedl's distribution model, directory structure, install mechanism, and constraints Kypr must replicate or diverge from",
+    "docs/adr/ADR-001-distribution-model.md records the decision to follow hedl exactly vs. adapt, with evidence from the hedl study",
+    "Phase 2 work items are drafted in .work/work.json covering the full skill/kypr/ build",
+    "CLAUDE.md exists at repo root with current phase and project context",
+    "am_i_done.py passes on a feature branch"
+  ],
+  "constraints": [
+    "No skill/kypr/ code written during phase 1 — scope and requirements only",
+    "Every design decision must reference docs/requirements.md or docs/hedl-study.md",
+    "H1 fix (check_checklist '(or N/A with reason)' gap from SEED-0001) must be resolved in the first PR of this phase"
+  ],
+  "workstreams": [
+    {
+      "id": "WS-REQ",
+      "name": "Requirements",
+      "items": ["WORK-0001"]
+    },
+    {
+      "id": "WS-TECH",
+      "name": "Hedl Study",
+      "items": ["WORK-0002"]
+    },
+    {
+      "id": "WS-ARCH",
+      "name": "Architecture",
+      "items": ["WORK-0003", "WORK-0004", "WORK-0005"]
+    }
+  ],
+  "assumptions_to_validate": [
+    "hedl's distribution model is documented well enough to replicate (study will confirm or flag gaps)",
+    "Kypr's scope fits within what hedl's skill model supports (agent-agnostic adapters are feasible)"
+  ],
+  "learning_goals": [
+    "What exactly does hedl's install mechanism do, and what must Kypr replicate?",
+    "What are the minimum workspace isolation requirements for personal/professional separation?"
+  ],
+  "next_phase_trigger": "All DoD items verified. Run /phase-complete."
+}

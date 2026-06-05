@@ -1,15 +1,35 @@
 {
-  "current_phase": 0,
+  "current_phase": 1,
   "phases": [
     {
       "phase": 0,
-      "name": "Setup",
-      "status": "active",
+      "name": "Seed",
+      "status": "complete",
       "file": ".work/phases/phase-0.json"
+    },
+    {
+      "phase": 1,
+      "name": "Project Initiation",
+      "status": "active",
+      "file": ".work/phases/phase-1.json"
     }
   ],
 
-  "transition_log": [],
+  "transition_log": [
+    {
+      "from": 0,
+      "to": 1,
+      "date": "2026-06-05",
+      "reason": "Operator direction change — phase 0 DoD unmet (skill/kypr/ never started). Phase 1 is project initiation and scope-setting; no building."
+    }
+  ],
 
-  "direction_changes": []
+  "direction_changes": [
+    {
+      "date": "2026-06-05",
+      "phase": 0,
+      "change": "Close phase 0 without meeting DoD. Start phase 1 as project initiation (requirements, hedl study, scope definition) rather than building.",
+      "operator": "neilgfoster"
+    }
+  ]
 }
