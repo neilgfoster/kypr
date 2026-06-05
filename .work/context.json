@@ -3,15 +3,16 @@
   "meta": {
     "project": "kypr",
     "work_item_prefix": "WORK",
-    "phase": 0,
+    "phase": 1,
     "last_updated": "2026-06-05",
     "description": "Personal assistant framework delivered as an agent skill"
   },
   "project_version": "0.0.0",
   "releases": {},
   "state": {
-    "phase_0_complete": false,
-    "_edit_me": "Update phase_0_complete to true when /phase-complete has been run."
+    "phase_0_complete": true,
+    "phase_0_close_reason": "operator direction change — DoD unmet, phase reframed",
+    "phase_1_active": true
   },
   "structure": {
     "CLAUDE.md": "primary project context — read every session",

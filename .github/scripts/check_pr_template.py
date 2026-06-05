@@ -153,10 +153,31 @@ def check_checklist(body: str) -> None:
     if not content or is_placeholder(content):
         ERRORS.append("Section '## Checklist' is empty.")
         return
-    unchecked = re.findall(r"^\s*- \[ \] ", content, re.MULTILINE | re.IGNORECASE)
-    if unchecked:
+    # An unchecked item is acceptable only if the user has added an inline
+    # justification of >=12 chars after the item label. The template's own
+    # "(or N/A with reason)" hint is NOT a justification — it must be stripped
+    # before measuring. This mirrors check_work_item's "none" logic.
+    unjustified = []
+    for line in content.splitlines():
+        if not re.match(r"^\s*- \[ \] ", line, re.IGNORECASE):
+            continue
+        # Strip the checkbox prefix.
+        rest = re.sub(r"^\s*- \[ \] ", "", line, flags=re.IGNORECASE).strip()
+        # Strip the template placeholder so it cannot count as justification.
+        rest = re.sub(r"\(or N/?A with reason\)", "", rest, flags=re.IGNORECASE).strip()
+        # User justification must follow "N/A" (or "n/a") + separator.
+        just_match = re.search(
+            r"\bn/?a\b[\s:—\-]+(?P<just>\S.+)",
+            rest,
+            re.IGNORECASE | re.DOTALL,
+        )
+        if just_match and len(just_match.group("just").strip()) >= 12:
+            continue
+        unjustified.append(line.strip())
+    if unjustified:
         ERRORS.append(
-            f"Section '## Checklist' has {len(unchecked)} unchecked item(s) - mark each with [x] or remove."
+            f"Section '## Checklist' has {len(unjustified)} unchecked item(s) without justification"
+            " - mark each with [x], or add 'N/A: <reason>' (>=12 chars)."
         )
 
 
