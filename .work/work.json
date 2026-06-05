@@ -1,30 +1,10 @@
 {
   "meta": {
     "current_phase": 2,
-    "active_item": "WORK-0007",
+    "active_item": null,
     "last_updated": "2026-06-05"
   },
-  "active": [
-    {
-      "id": "WORK-0007",
-      "title": "write plugin.json and projections.json",
-      "phase": 2,
-      "workstream": "WS-ARCH",
-      "change_class": "chore",
-      "status": "active",
-      "priority_band": "high",
-      "dependencies": [
-        "WORK-0006"
-      ],
-      "source": "docs/adr/ADR-001-distribution-model.md §Consequences 1, 4",
-      "description": "Write skill/kypr/plugin.json (name, version, description metadata) and skill/kypr/projections.json (flat JSON array of {source, target} pairs covering all files install.py must copy into a target repo).",
-      "acceptance_criteria": [
-        "skill/kypr/plugin.json exists with name, version, and description fields.",
-        "skill/kypr/projections.json exists as a valid JSON array of {source, target} objects.",
-        "Every file that install.py should copy is listed in projections.json."
-      ]
-    }
-  ],
+  "active": [],
   "backlog": [
     {
       "id": "WORK-0008",
@@ -166,6 +146,26 @@
     }
   ],
   "completed": [
+    {
+      "id": "WORK-0007",
+      "title": "write plugin.json and projections.json",
+      "phase": 2,
+      "workstream": "WS-ARCH",
+      "change_class": "chore",
+      "status": "complete",
+      "priority_band": "high",
+      "dependencies": [
+        "WORK-0006"
+      ],
+      "source": "docs/adr/ADR-001-distribution-model.md §Consequences 1, 4",
+      "description": "Write skill/kypr/plugin.json (name, version, description metadata) and skill/kypr/projections.json (flat JSON array of {source, target} pairs covering all files install.py must copy into a target repo).",
+      "acceptance_criteria": [
+        "skill/kypr/plugin.json exists with name, version, and description fields.",
+        "skill/kypr/projections.json exists as a valid JSON array of {source, target} objects.",
+        "Every file that install.py should copy is listed in projections.json."
+      ],
+      "completed_date": "2026-06-05"
+    },
     {
       "id": "WORK-0006",
       "title": "scaffold skill/kypr/ directory structure",

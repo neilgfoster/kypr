@@ -1,8 +1,10 @@
 {
   "date": "2026-06-05",
-  "completed": ["WORK-0006"],
-  "decisions": [],
-  "next_item": "WORK-0007",
+  "completed": ["WORK-0006", "WORK-0007"],
+  "decisions": [
+    "ADR-002: target repo layout — .kypr/ namespace for agent-agnostic core, .claude/ for adapter wiring; operator decision via structured question. Documented deviation from hedl's functional-location model per requirements §3."
+  ],
+  "next_item": "WORK-0008",
   "blockers": [],
-  "notes": "WORK-0006 scaffold delivered. Adversarial review PASS (panel: scope-auditor, historian, new-engineer, security-auditor; two BLOCKING findings refuted deterministically via git ls-tree). Carry-forward before /phase-complete: N1 — SKILL.md has no owning work item despite hedl-study.md:28 and multi-harness claims; file a backlog item or record an explicit deferral. Optional hardening before WORK-0012: .gitignore/.gitattributes defence-in-depth for workspace-state/. PR #14 (phase transition) merged earlier this session after PR-template fix."
+  "notes": "WORK-0007 delivered with ADR-002. Adversarial review PASS after one fix cycle (panel: scope-auditor, historian, future-engineer, devil-advocate; 3 BLOCKING + 8 SIGNIFICANT all fixed in f55f139 — manifest semantics, path bases, copy-once exceptions, stable encryption-gate path, per-subdir gitattributes rules). Carry-forward before /phase-complete: (1) SKILL.md has no owning work item (from WORK-0006 review); (2) optionally backfill ADR-002 into WORK-0007 AC record; (3) at phase close confirm WORK-0009/0011/0012 validated the .kypr/ layout (DA7). WORK-0012's structure must honour ADR-002: 'active' = single identifier token; per-subdir filter rules, no negation globs."
 }
